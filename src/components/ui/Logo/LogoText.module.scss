@@ -1,0 +1,12 @@
+.LogoText {
+    // Стили для контейнера
+    display: flex;
+    align-items: center;
+    
+    img {  // ← стили для картинки внутри
+        height: 60px;
+        // width: auto;
+        // object-fit: contain;
+        // border-radius: 10px;
+    }
+}

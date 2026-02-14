@@ -1,0 +1,15 @@
+.header {
+  padding: 20px 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  .headerContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+  }
+  .logoBlock {
+    display: flex;
+    gap: 20px;
+  }
+
+}

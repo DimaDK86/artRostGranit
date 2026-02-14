@@ -1,0 +1,92 @@
+.hero {
+  // Фон с затемнением (linear-gradient создает темную пленку поверх картинки)
+  // background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+  // url('/hero-bg.jpg'); // Картинка лежит в public/hero-bg.jpg
+  background-size: cover;           // Картинка покрывает всю секцию
+  background-position: center;      // Центрируем картинку
+  color: white;                     // Белый текст
+  min-height: 600px;                // Минимальная высота секции
+  display: flex;                    // Используем flexbox
+  align-items: center;              // Выравниваем контент по вертикали по центру
+}
+
+.content {
+  padding: 40px 0;
+  max-width: 800px;                  // Ограничиваем ширину текста
+}
+
+.title {
+  font-size: 3rem;                   // Размер шрифта
+  margin-bottom: 20px;                // Отступ снизу
+  line-height: 1.2;                   // Межстрочный интервал
+
+  span {
+    display: block;                   // Переносим на новую строку
+    color: #ffd700;                    // Золотой цвет
+    font-size: 2rem;                   // Меньше основного заголовка
+  }
+
+  // Для планшетов уменьшаем шрифт
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  // Для телефонов ещё меньше
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  opacity: 0.9;                        // Немного прозрачности
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;                          // Промежуток между кнопками
+  flex-wrap: wrap;                     // Перенос на новую строку если не влезают
+}
+
+// Общие стили для обеих кнопок
+.primaryBtn,
+.secondaryBtn {
+  padding: 15px 40px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;                // Плавная анимация при наведении
+
+  @media (max-width: 480px) {
+    padding: 12px 30px;
+    width: 100%;                       // На телефонах кнопки во всю ширину
+    text-align: center;
+  }
+}
+
+.primaryBtn {
+  background: #2c3e50;                 // Темно-синий фон
+  color: white;
+
+  &:hover {                            // При наведении
+    background: #1a252f;                // Ещё темнее
+    transform: translateY(-2px);        // Поднимаем вверх
+  }
+}
+
+.secondaryBtn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+
+  &:hover {
+    background: white;
+    color: #2c3e50;
+    transform: translateY(-2px);
+  }
+}
