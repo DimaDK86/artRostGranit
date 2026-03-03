@@ -13,6 +13,8 @@ import { MobileNav } from "@/components/ui/Nav/MobileNav";
 export function Header() {
   const bp = useBreakpoints();
 
+  const isMobileAny = bp.isMobileSmall || bp.isMobile
+
   return (
     <header className={styles.header}>
       <Container size="full" className={styles.headerContainer}>
@@ -30,14 +32,17 @@ export function Header() {
           </div>
         </Link>
 
-        {/* Центральная часть - Навигация (разная для мобил/десктопа) */}
+        {/* Центральная часть - Навигация (разная для мобил/десктопа)
         {bp.isMobile ? (
           // <div>sdg</div>
           <MobileNav />
         ) : (
           // Гамбургер-меню на мобилках
           <Nav /> // Горизонтальное меню на десктопе
-        )}
+        )} */}
+
+                {/* Навигация - используем стабильную группу */}
+        {isMobileAny ? <MobileNav /> : <Nav />}
 
         {/* Правая часть - Контакты (только на десктопе) */}
         {bp.isDesktop || bp.isDesktopWide ? (

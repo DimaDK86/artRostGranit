@@ -26,7 +26,7 @@ export function useBreakpoints(): Breakpoints {
     const checkBreakpoints = () => {
       const width = window.innerWidth;
       
-      const isMobileSmall = width >= 320 && width < 550;
+      const isMobileSmall = width >= 0 && width < 550;
       const isMobile = width >= 550 && width < 900;
       const isTablet = width >= 900 && width < 1100;
       const isDesktop = width >= 1100 && width < 1400;
