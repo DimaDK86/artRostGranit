@@ -16,4 +16,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@/styles/mixins" as *;` // ← автоматический импорт во все SCSS файлы
+      }
+    }
+  }
 });

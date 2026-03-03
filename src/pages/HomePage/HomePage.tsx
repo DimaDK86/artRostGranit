@@ -9,11 +9,11 @@ export const HomePage: React.FC = () => {
   return (
     <div className={styles.homePage}>
       {/*<Header />*/}
-      <main>
+      {/* <main> */}
         <Hero />
         <About />
         {/* Здесь будут другие секции */}
-      </main>
+      {/* </main> */}
 
       {/*<Footer />*/}
     </div>

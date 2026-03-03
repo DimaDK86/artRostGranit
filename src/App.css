@@ -1,0 +1,26 @@
+/* App.css */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  /* flex: 1 0 auto означает:
+     - flex-grow: 1 (растягиваться)
+     - flex-shrink: 0 (не сжиматься)
+     - flex-basis: auto (базовый размер по контенту)
+  */
+}
+
+footer {
+  flex-shrink: 0;
+  /* футер не должен сжиматься */
+}

@@ -1,15 +1,80 @@
 .header {
+  position: sticky;
+  top: 0;
+  // background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  
+  // Адаптивные отступы через миксины
   padding: 20px 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-  .headerContainer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
+  background-color: #140f0f;
+  
+  @include mobile {
+    padding: 10px 0;
   }
-  .logoBlock {
-    display: flex;
-    gap: 20px;
+  
+  @include tablet {
+    padding: 15px 0;
   }
+}
 
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  // На мобилках и планшетах меняем выравнивание
+  @include mobile {
+    justify-content: space-between;
+  }
+  
+  @include tablet {
+    justify-content: space-between;
+  }
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  
+  // На маленьких экранах уменьшаем отступ
+  @include mobile {
+    gap: 8px;
+  }
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
+  .phone {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    
+    // Ховер-эффект через миксин
+    @include hover {
+      color: #a0a0a0;
+    }
+  }
+  
+  .callbackBtn {
+    padding: 8px 16px;
+    background: transparent;
+    border: 2px solid #a0a0a0;
+    border-radius: 4px;
+    color: #a0a0a0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    
+    @include hover {
+      background: #a0a0a0;
+      color: white;
+    }
+  }
 }

@@ -1,0 +1,27 @@
+# Автоматически определять текстовые файлы
+* text=auto
+
+# Явно указываем текстовые файлы
+*.ts text
+*.tsx text
+*.js text
+*.jsx text
+*.css text
+*.scss text
+*.html text
+*.json text
+*.md text
+*.yml text
+*.yaml text
+
+# Бинарные файлы
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

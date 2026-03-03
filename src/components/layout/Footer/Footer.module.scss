@@ -1,0 +1,27 @@
+.footer {
+    background-color: #140f0f;
+
+  display: flex;
+  padding: 20px 20px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  .empty {
+    background-color: white;
+  }
+  .est {
+    font-size: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'MontserratBold', sans-serif;
+  }
+  .social {
+    display: flex;
+    gap: 20px;
+    .socialIcon {
+      width: 50px;
+    }
+  }
+}
