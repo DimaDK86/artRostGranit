@@ -1,27 +1,40 @@
 .footer {
-    background-color: #140f0f;
-
+  background-color: #140f0f;
   display: flex;
   padding: 20px 20px;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: sticky;
+  bottom: 0;
+  margin-top: auto; /* 👈 Важно для sticky */
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
 
-  .empty {
-    background-color: white;
-  }
   .est {
     font-size: 20px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     font-family: 'MontserratBold', sans-serif;
+    color: white;
   }
+
   .social {
     display: flex;
     gap: 20px;
+    align-items: center;
+
     .socialIcon {
       width: 50px;
+      height: 50px;
+      object-fit: contain;
+      transition: opacity 0.3s;
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
 }

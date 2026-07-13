@@ -1,0 +1,39 @@
+@use '@/styles/mixins' as *;
+
+.productCard {
+  padding: 20px;
+
+  .productTitle {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .productCardInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+
+
+    .productCardInfoImage, .productCardInfoDescription {
+      flex: 1;
+
+    }
+
+
+    .productCardInfoImage {
+      text-align: center;
+      img {
+        align-items: center;
+        max-width: 300px;
+        border-radius: 10px;
+
+      }
+    }
+
+    .productCardInfoDescription {
+      flex: 1;
+      font-size: 16px;
+    }
+  }
+}
