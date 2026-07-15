@@ -9,11 +9,15 @@ import Logo from "@/components/ui/Logo/Logo";
 // import LogoTextColumn from "@/components/ui/Logo/LogoTextColumn";
 import { Nav } from "@/components/ui/Nav/Nav";
 import { MobileNav } from "@/components/ui/Nav/MobileNav";
+import { useCart } from "@/context/CartContext";
+import cartIcon from "@/assets/images/cart.png";
 
 export function Header() {
   const bp = useBreakpoints();
 
   const isMobileAny = bp.isMobileSmall || bp.isMobile;
+
+  const { totalItems } = useCart();
 
   return (
     <header className={styles.header}>
@@ -22,27 +26,19 @@ export function Header() {
         <Link to="/" className={styles.logoLink}>
           <div className={styles.logoSection}>
             <Logo />
-
-            {/*/!* Разные варианты текста логотипа в зависимости от экрана *!/*/}
-            {/*{bp.current === "mobile-small" && <LogoTextColumn />}*/}
-            {/*{bp.current === "mobile" && <LogoText />}*/}
-            {/*{bp.current === "tablet" && <LogoTextColumn />}*/}
-            {/*{bp.current === "desktop" && <LogoTextColumn />}*/}
-            {/*{bp.current === "desktop-wide" && <LogoTextColumn />}*/}
           </div>
         </Link>
 
-        {/* Центральная часть - Навигация (разная для мобил/десктопа)
-        {bp.isMobile ? (
-          // <div>sdg</div>
-          <MobileNav />
-        ) : (
-          // Гамбургер-меню на мобилках
-          <Nav /> // Горизонтальное меню на десктопе
-        )} */}
-
         {/* Навигация - используем стабильную группу */}
         {isMobileAny ? <MobileNav /> : <Nav />}
+        <Link to="/cart" className={styles.cartLink}>
+          <div className={styles.cart}>
+            <img src={cartIcon} alt="Корзина" className={styles.cartIcon} />
+            {totalItems > 0 && (
+              <span className={styles.cartBadge}>{totalItems}</span>
+            )}
+          </div>
+        </Link>
 
         {/* Правая часть - Контакты (только на десктопе) */}
         {bp.isDesktop || bp.isDesktopWide ? (

@@ -13,7 +13,7 @@
   z-index: 1000;
 
   .est {
-    font-size: 20px;
+    font-size: 12px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -24,11 +24,11 @@
   .social {
     display: flex;
     gap: 20px;
-    align-items: center;
+//    align-items: center;   //странное поведение
 
     .socialIcon {
-      width: 50px;
-      height: 50px;
+      width: 20px;
+      height: 20px;
       object-fit: contain;
       transition: opacity 0.3s;
 

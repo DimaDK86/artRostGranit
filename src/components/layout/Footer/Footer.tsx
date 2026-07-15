@@ -12,7 +12,9 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.empty}></div>
-      <div className={styles.est}>est. 2015y</div>
+      <div className={styles.est}>
+        ЛИТЬЕВОЙ МАРМОР<sup>®</sup>
+      </div>
       <div className={styles.social}>
         {/* Телефон */}
         <a href={`tel:${phoneNumber}`} className={styles.socialLink}>

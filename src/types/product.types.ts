@@ -81,4 +81,13 @@ export const mockProducts: Product[] = [
     material: "Гранит",
     sizes: "120x80x10 см",
   },
+  {
+    id: "8",
+    name: 'НЕТ"',
+    price: 68000,
+    image: null,
+    description: "Большой монументальный памятник",
+    material: "Гранит",
+    sizes: "120x80x10 см",
+  },
 ];

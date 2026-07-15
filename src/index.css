@@ -1,6 +1,16 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../src/assets/fonts/Roboto.ttf");
+}
+@font-face {
+  font-family: "Roboto-Italic";
+  src: url("../src/assets/fonts/Roboto-Italic.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 body {

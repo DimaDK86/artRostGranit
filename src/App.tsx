@@ -13,6 +13,7 @@ import { ProductPage } from "@/pages/ProductPage/ProductPage.tsx";
 
 import "modern-normalize/modern-normalize.css";
 import "./App.css";
+import Cart from "@/pages/Cart/Cart.tsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/cart" element={<Cart />} />
 
           <Route path="/product/:id" element={<ProductPage />} />
 
