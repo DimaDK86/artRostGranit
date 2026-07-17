@@ -7,8 +7,10 @@ import { useCart } from "@/context/CartContext";
 import React, { useState } from "react";
 import styles from "./ProductPage.module.scss";
 import ImageCarousel from "@/components/ui/Carousel/ImageCarousel";
+// import {useBreakpoints} from "@/hooks/useBreakpoints.ts";
 
 export function ProductPage() {
+  // const bp = useBreakpoints();
   const { id } = useParams();
   const { addItem, isInCart } = useCart();
   const [isAdded, setIsAdded] = useState(false);

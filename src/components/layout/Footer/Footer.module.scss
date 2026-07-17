@@ -12,6 +12,15 @@
   box-sizing: border-box;
   z-index: 1000;
 
+  @include tablet {
+    padding: 15px 15px;
+  }
+
+  @include mobile {
+    padding: 10px 15px;
+
+  }
+
   .est {
     font-size: 12px;
     position: absolute;
@@ -19,12 +28,22 @@
     transform: translateX(-50%);
     font-family: 'MontserratBold', sans-serif;
     color: white;
+
+    @include mobile {
+      font-size: 10px;
+      position: static;
+      transform: translateX(0);
+    }
   }
 
   .social {
     display: flex;
     gap: 20px;
 //    align-items: center;   //странное поведение
+
+    @include mobile {
+      gap: 15px;
+    }
 
     .socialIcon {
       width: 20px;

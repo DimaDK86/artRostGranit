@@ -7,12 +7,13 @@ import telegram from "@/assets/images/social/tg.png";
 import phone from "@/assets/images/social/phone.png";
 import max from "@/assets/images/social/Max_logo-32x32.png";
 
+import { socialContacts } from "@/utils/constants.ts";
+
 export function ContactsPage() {
   const bp = useBreakpoints();
-  const phoneNumber = "+79013544854";
-  const whatsappNumber = "+79013544854";
-  const telegramUsername = "ChePopit";
-  const maxmUsername = "ChePopit";
+
+  const { phoneNumber, whatsappNumber, telegramUsername, maxUsername } =
+    socialContacts;
 
   // Разные размеры карты для разных экранов
   const mapHeight = bp.isMobile ? 300 : bp.isTablet ? 400 : 500;
@@ -105,7 +106,7 @@ export function ContactsPage() {
 
             <div>
               <a
-                href={`https://web.max.ru/${maxmUsername}`}
+                href={`https://web.max.ru/${maxUsername}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"

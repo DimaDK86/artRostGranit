@@ -5,18 +5,20 @@ import phone from "@/assets/images/social/phone.png";
 
 import styles from "./Footer.module.scss";
 
+import { socialContacts } from "@/utils/constants.ts";
+
 const Footer = () => {
-  const phoneNumber = "+79013544854";
-  const whatsappNumber = "+79013544854";
-  const telegramUsername = "ChePopit";
-  const maxmUsername = "ChePopit";
+  const { phoneNumber, whatsappNumber, telegramUsername, maxUsername } =
+    socialContacts;
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.empty}></div>
       <div className={styles.est}>
         ЛИТЬЕВОЙ МАРМОР<sup>®</sup>
       </div>
+
+      <div className={styles.empty}></div>
+
       <div className={styles.social}>
         {/* Телефон */}
         <a href={`tel:${phoneNumber}`} className={styles.socialLink}>
@@ -45,7 +47,7 @@ const Footer = () => {
 
         {/* MAX */}
         <a
-          href={`https://web.max.ru/${maxmUsername}`}
+          href={`https://web.max.ru/${maxUsername}`}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.socialLink}
