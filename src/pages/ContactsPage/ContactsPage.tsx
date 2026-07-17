@@ -5,12 +5,14 @@ import styles from "./ContactsPage.module.scss";
 import whatsapp from "@/assets/images/social/whatsapp.png";
 import telegram from "@/assets/images/social/tg.png";
 import phone from "@/assets/images/social/phone.png";
+import max from "@/assets/images/social/Max_logo-32x32.png";
 
 export function ContactsPage() {
   const bp = useBreakpoints();
   const phoneNumber = "+79013544854";
   const whatsappNumber = "+79013544854";
   const telegramUsername = "ChePopit";
+  const maxmUsername = "ChePopit";
 
   // Разные размеры карты для разных экранов
   const mapHeight = bp.isMobile ? 300 : bp.isTablet ? 400 : 500;
@@ -31,7 +33,7 @@ export function ContactsPage() {
                 }}
               >
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?ll=37.416580%2C55.601284&mode=search&oid=135224636907&ol=biz&z=16.48"
+                  src="https://yandex.ru/map-widget/v1/?ll=39.961188%2C48.354488&mode=search&sll=39.961360%2C48.355303&text=48.355303%2C39.961360&utm_source=ntp_chrome&z=16.73"
                   width={mapWidth}
                   height={mapHeight}
                   allowFullScreen
@@ -41,27 +43,30 @@ export function ContactsPage() {
               </div>
               <div className="contact wow animate__backInLeft">
                 <div className="address">
-                  <h4>Наш адрес</h4>
-                  <p>Москва улица Малое Понизовье дом 8 корп. 1</p>
+                  <h4>адрес производства</h4>
+                  <p>
+                    2-й Аварийный переулок, 10, Донецк, Ростовская область,
+                    346341
+                  </p>
                 </div>
                 <div className="time">
-                  <h4>Время работы</h4>
-                  <p>ПН-ВС с 11:00 до 23:00</p>
-                  <p>без выходных и перерывов</p>
+                  <h4>Режим работы</h4>
+                  <p>ПН-ПТ с 09:00 до 17:00</p>
+                  {/*<p>без перерывов</p>*/}
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-              <div className={styles.contactsItems}>
+        <div className={styles.contactsItems}>
           <h2>КОНТАКТЫ</h2>
           <p>по вопросам сотрудничества, открытых ваканчий и прочим,</p>
           <p>будем рады Вам ответить любым удобным способом:</p>
-                  <div className={styles.contactsItem}>
+          <div className={styles.contactsItem}>
             <div>
               <a href={`tel:${phoneNumber}`} className="social-link">
-                              <img className={styles.socialIcon} src={phone} alt="phone" />
+                <img className={styles.socialIcon} src={phone} alt="phone" />
                 +7 (901) 354-48-54
               </a>
             </div>
@@ -73,7 +78,11 @@ export function ContactsPage() {
                 rel="noopener noreferrer"
                 className="social-link"
               >
-                <img className={styles.socialIcon} src={whatsapp} alt="whatsapp" />
+                <img
+                  className={styles.socialIcon}
+                  src={whatsapp}
+                  alt="whatsapp"
+                />
                 +7 (901) 354-48-54
               </a>
             </div>
@@ -85,7 +94,23 @@ export function ContactsPage() {
                 rel="noopener noreferrer"
                 className="social-link"
               >
-                <img className={styles.socialIcon} src={telegram} alt="telegram" />
+                <img
+                  className={styles.socialIcon}
+                  src={telegram}
+                  alt="telegram"
+                />
+                @ChePopit
+              </a>
+            </div>
+
+            <div>
+              <a
+                href={`https://web.max.ru/${maxmUsername}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                <img className={styles.socialIcon} src={max} alt="telegram" />
                 @ChePopit
               </a>
             </div>

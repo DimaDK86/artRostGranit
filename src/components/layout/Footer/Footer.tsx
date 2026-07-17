@@ -1,5 +1,6 @@
 import whatsapp from "@/assets/images/social/whatsapp.png";
 import telegram from "@/assets/images/social/tg.png";
+import max from "@/assets/images/social/Max_logo-32x32.png";
 import phone from "@/assets/images/social/phone.png";
 
 import styles from "./Footer.module.scss";
@@ -8,6 +9,7 @@ const Footer = () => {
   const phoneNumber = "+79013544854";
   const whatsappNumber = "+79013544854";
   const telegramUsername = "ChePopit";
+  const maxmUsername = "ChePopit";
 
   return (
     <footer className={styles.footer}>
@@ -39,6 +41,16 @@ const Footer = () => {
           className={styles.socialLink}
         >
           <img className={styles.socialIcon} src={telegram} alt="telegram" />
+        </a>
+
+        {/* MAX */}
+        <a
+          href={`https://web.max.ru/${maxmUsername}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.socialLink}
+        >
+          <img className={styles.socialIcon} src={max} alt="telegram" />
         </a>
       </div>
     </footer>

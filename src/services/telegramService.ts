@@ -1,7 +1,8 @@
 // src/services/telegramService.ts
 
 const TELEGRAM_BOT_TOKEN = "8701146616:AAFzshJbOZp6pnIlJTQ3_0hZA2WTanxF67Q"; // Ваш токен
-const TELEGRAM_CHAT_ID = "304686431"; // Ваш Chat ID
+// const TELEGRAM_CHAT_ID = "304686431"; // Ваш Chat ID
+const TELEGRAM_CHAT_ID = "-1004361272897"; // Ваш Chat ID
 
 interface OrderData {
   name: string;

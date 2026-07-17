@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   price: number;
   image: string | null;
+  images?: string[];
   description?: string;
   category?: "monument" | "fence" | "table" | "other";
   material?: string;
@@ -23,6 +24,7 @@ export const mockProducts: Product[] = [
     name: 'Памятник вертикальный "Классика"',
     price: 35000,
     image: img1,
+    images: [img1, img7, img3, img8, img12],
     description: "Вертикальный памятник из габбро-диабаза",
     material: "Габбро-диабаз",
     sizes: "100x50x8 см",
