@@ -82,6 +82,11 @@
 // ⚠️ Убираем токен из клиентского кода - теперь он только на сервере!
 // const TELEGRAM_BOT_TOKEN = "8701146616:AAFzshJbOZp6pnIlJTQ3_0hZA2WTanxF67Q";
 
+// src/services/telegramService.ts
+
+// ❌ УБИРАЕМ прямой запрос к Telegram
+// const TELEGRAM_BOT_TOKEN = "8701146616:AAFzshJbOZp6pnIlJTQ3_0hZA2WTanxF67Q";
+
 const TELEGRAM_CHAT_ID = "-1004361272897"; // Ваш Chat ID
 
 interface OrderData {
@@ -129,7 +134,7 @@ ${items
   `;
 
   try {
-    // 👇 Отправляем запрос через наш прокси-сервер
+    // ✅ Отправляем через наш прокси на Vercel
     const response = await fetch("/api/telegram", {
       method: "POST",
       headers: {
@@ -147,7 +152,7 @@ ${items
       throw new Error(data.error || "Ошибка отправки в Telegram");
     }
 
-    console.log("✅ Сообщение отправлено в Telegram");
+    console.log("✅ Сообщение отправлено в Telegram через прокси");
     return { success: true };
   } catch (error) {
     console.error("❌ Ошибка отправки в Telegram:", error);
