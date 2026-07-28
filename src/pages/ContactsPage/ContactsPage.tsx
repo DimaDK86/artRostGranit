@@ -9,7 +9,7 @@ import max from "@/assets/images/social/Max_logo-32x32.png";
 
 import { socialContacts } from "@/utils/constants.ts";
 
-export function ContactsPage() {
+const ContactsPage = () => {
   const bp = useBreakpoints();
 
   const { phoneNumber, whatsappNumber, telegramUsername, maxUsername } =
@@ -120,4 +120,6 @@ export function ContactsPage() {
       </Container>
     </div>
   );
-}
+};
+
+export default ContactsPage;

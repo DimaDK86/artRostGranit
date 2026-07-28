@@ -9,7 +9,7 @@
 
   h2 {
     font-size: 32px;
-    color: #333;
+    color: #888;
   }
 
   p {
@@ -69,6 +69,10 @@
 
     &:hover {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      color: #000000;
     }
 
     .itemImage {
@@ -174,6 +178,7 @@
     h3 {
       font-size: 24px;
       margin-bottom: 20px;
+      color: #000;
     }
 
     .summaryRow {
@@ -182,6 +187,8 @@
       font-size: 18px;
       padding: 12px 0;
       border-bottom: 1px solid #e0e0e0;
+      color: #000;
+      
 
       &:last-of-type {
         border-bottom: none;

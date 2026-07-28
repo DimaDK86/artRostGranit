@@ -79,30 +79,6 @@
   }
 }
 
-.cart {
-  position: relative;
-  max-width: 50px;
-  max-height: 50px;
-  padding: 7px;
-  border-radius: 50%;
-  background-color: white;
-  img {
-    width: 100%;
-  }
-  span {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    background-color: red;
-    border-radius: 50%;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    padding: 6px 0 0 0 ;
-    font-size: 10px;
-  }
-}
-
 .headerCartMenuTabletMobile{
   display: flex;
 //  flex-direction: column;

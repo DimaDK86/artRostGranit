@@ -1,16 +1,15 @@
-// src/pages/ProductPage/ProductPage.tsx
 import { useParams } from "react-router-dom";
 import { mockProducts } from "@/types/product.types";
 import notImage from "@/assets/images/product/not_image.jpg";
 import { Container } from "@/components/ui/Container/Container";
 import { useCart } from "@/context/CartContext";
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./ProductPage.module.scss";
 import ImageCarousel from "@/components/ui/Carousel/ImageCarousel";
-// import {useBreakpoints} from "@/hooks/useBreakpoints.ts";
 
-export function ProductPage() {
-  // const bp = useBreakpoints();
+import React from "react";
+
+const ProductPage = () => {
   const { id } = useParams();
   const { addItem, isInCart } = useCart();
   const [isAdded, setIsAdded] = useState(false);
@@ -117,4 +116,6 @@ export function ProductPage() {
       </div>
     </Container>
   );
-}
+};
+
+export default ProductPage;

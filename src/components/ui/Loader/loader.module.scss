@@ -1,0 +1,58 @@
+////.flexLoader {
+////position: absolute;
+////  top: 50%;
+////  left: 50%;
+////  bottom: 50%;
+////  right: 50%;
+//  .loader {
+//    /* HTML: <div class="loader"></div> */
+//    .loader {
+//      width: 120px;
+//      height: 22px;
+//      border-radius: 20px;
+//      color: #514b82;
+//      border: 2px solid;
+//      position: relative;
+//    }
+//    .loader::before {
+//      content: "";
+//      position: absolute;
+//      margin: 2px;
+//      inset: 0 100% 0 0;
+//      border-radius: inherit;
+//      background: currentColor;
+//      animation: l6 2s infinite;
+//    }
+//    @keyframes l6 {
+//      100% {inset:0}
+//    }
+//  }
+////}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 180px;
+  height: 22px;
+  border-radius: 20px;
+  color: #514b82;
+  border: 2px solid;
+  position: relative;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  inset: 0 100% 0 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: l6 1s infinite;
+}
+@keyframes l6 {
+  100% {inset:0}
+}
+
+.loaderDiv {
+  position: absolute;
+    top: 50%;
+    left: calc(50% - 90px);
+}

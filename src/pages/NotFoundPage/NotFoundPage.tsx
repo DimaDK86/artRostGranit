@@ -1,8 +1,8 @@
 import { Container } from "@/components/ui/Container/Container";
-import { Link } from 'react-router-dom';
-import styles from './NotFoundPage.module.scss';
+import { Link } from "react-router-dom";
+import styles from "./NotFoundPage.module.scss";
 
-export function NotFoundPage() {
+const NotFoundPage = () => {
   return (
     <div className={styles.notFound}>
       <Container size="narrow">
@@ -17,4 +17,6 @@ export function NotFoundPage() {
       </Container>
     </div>
   );
-}
+};
+
+export default NotFoundPage;
