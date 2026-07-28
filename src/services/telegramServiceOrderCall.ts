@@ -12,7 +12,7 @@ export const sendOrderCall = async (orderData: OrderData) => {
 
   // Формируем сообщение
   const message = `
-🛒 <b>ПРОСЬБА ПЕРЕЗВОНИТЬ</b>
+📞 <b>ПРОСЬБА ПЕРЕЗВОНИТЬ</b>
 
 <b>👤 Информация о клиенте:</b>
 Имя: ${name}

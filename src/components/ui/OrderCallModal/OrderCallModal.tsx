@@ -162,18 +162,18 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
               />
             </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="address">Адрес доставки</label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                // required
-                placeholder="г. Москва, ул. Примерная, д. 1, кв. 1"
-              />
-            </div>
+            {/*<div className={styles.formGroup}>*/}
+            {/*  <label htmlFor="address">Адрес доставки</label>*/}
+            {/*  <input*/}
+            {/*    type="text"*/}
+            {/*    id="address"*/}
+            {/*    name="address"*/}
+            {/*    value={formData.address}*/}
+            {/*    onChange={handleChange}*/}
+            {/*    // required*/}
+            {/*    placeholder="г. Москва, ул. Примерная, д. 1, кв. 1"*/}
+            {/*  />*/}
+            {/*</div>*/}
 
             <div className={styles.formGroup}>
               <label htmlFor="comment">Комментарий</label>
