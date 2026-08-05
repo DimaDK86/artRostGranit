@@ -108,6 +108,10 @@ const ProductPage = () => {
                 Размеры
                 <strong> {product.sizes} </strong>
               </p>
+              <p>
+                Вес
+                <strong> {product.weight} </strong>
+              </p>
             </div>
 
             <div className={styles.bottomSection}>

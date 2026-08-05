@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/Container/Container";
 import styles from "./GalleryPage.module.scss";
 import ImageCarousel from "@/components/ui/Carousel/ImageCarousel.tsx";
 import img01 from "../../assets/images/sam/saim_01.jpeg";
-import img02 from "../../assets/images/sam/saim_02.jpeg";
+import img02 from "../../assets/images/sam/saim_09.jpeg";
 import img03 from "../../assets/images/sam/saim_03.jpeg";
 import img04 from "../../assets/images/sam/saim_04.jpeg";
 import img05 from "../../assets/images/sam/saim_05.jpeg";
