@@ -27,35 +27,38 @@ const CatalogPage = () => {
       {/* Заголовок */}
       <section className={styles.hero}>
         <Container size="normal">
-          <h1 className={styles.title}>Каталог памятников</h1>
+          <h1 className={styles.title}>Каталог изделий</h1>
           <p className={styles.subtitle}>
-            Изготовим памятник любой сложности из натурального гранита
+            Цветники и вазы из литьевого мрамора. Литьевой мрамор — это
+            искусственный камень из смолы и мраморной крошки. Он не впитывает
+            влагу, не боится морозов, не выгорает и не трескается. Смотрится как
+            натуральный гранит, но стоит дешевле.
           </p>
         </Container>
       </section>
 
       {/* Фильтры (пока заглушка) */}
-      <section className={styles.filters}>
-        <Container size="normal">
-          <div className={styles.filterBar}>
-            <div className={styles.filterTabs}>
-              <button className={`${styles.filterTab} ${styles.active}`}>
-                Все
-              </button>
-              <button className={styles.filterTab}>Вертикальные</button>
-              <button className={styles.filterTab}>Горизонтальные</button>
-              <button className={styles.filterTab}>Семейные</button>
-            </div>
+      {/*<section className={styles.filters}>*/}
+      {/*<Container size="normal">*/}
+      {/*<div className={styles.filterBar}>*/}
+      {/*  <div className={styles.filterTabs}>*/}
+      {/*    <button className={`${styles.filterTab} ${styles.active}`}>*/}
+      {/*      Все*/}
+      {/*    </button>*/}
+      {/*    <button className={styles.filterTab}>Вертикальные</button>*/}
+      {/*    <button className={styles.filterTab}>Горизонтальные</button>*/}
+      {/*    <button className={styles.filterTab}>Семейные</button>*/}
+      {/*  </div>*/}
 
-            <select className={styles.sortSelect}>
-              <option>По умолчанию</option>
-              <option>По цене (возрастание)</option>
-              <option>По цене (убывание)</option>
-              <option>По названию</option>
-            </select>
-          </div>
-        </Container>
-      </section>
+      {/*  <select className={styles.sortSelect}>*/}
+      {/*    <option>По умолчанию</option>*/}
+      {/*    <option>По цене (возрастание)</option>*/}
+      {/*    <option>По цене (убывание)</option>*/}
+      {/*    <option>По названию</option>*/}
+      {/*  </select>*/}
+      {/*</div>*/}
+      {/*</Container>*/}
+      {/*</section>*/}
 
       {/* Сетка товаров */}
       <section className={styles.products}>
@@ -78,21 +81,21 @@ const CatalogPage = () => {
       </section>
 
       {/* Пагинация (пока заглушка) */}
-      <section className={styles.pagination}>
-        <Container size="normal">
-          <div className={styles.paginationControls}>
-            <button className={styles.paginationBtn} disabled>
-              ←
-            </button>
-            <button className={`${styles.paginationBtn} ${styles.active}`}>
-              1
-            </button>
-            <button className={styles.paginationBtn}>2</button>
-            <button className={styles.paginationBtn}>3</button>
-            <button className={styles.paginationBtn}>→</button>
-          </div>
-        </Container>
-      </section>
+      {/*<section className={styles.pagination}>*/}
+      {/*  <Container size="normal">*/}
+      {/*    <div className={styles.paginationControls}>*/}
+      {/*      <button className={styles.paginationBtn} disabled>*/}
+      {/*        ←*/}
+      {/*      </button>*/}
+      {/*      <button className={`${styles.paginationBtn} ${styles.active}`}>*/}
+      {/*        1*/}
+      {/*      </button>*/}
+      {/*      <button className={styles.paginationBtn}>2</button>*/}
+      {/*      <button className={styles.paginationBtn}>3</button>*/}
+      {/*      <button className={styles.paginationBtn}>→</button>*/}
+      {/*    </div>*/}
+      {/*  </Container>*/}
+      {/*</section>*/}
     </div>
   );
 };

@@ -17,12 +17,6 @@ export function ProductCard({
 }: ProductCardProps) {
   const { addItem, isInCart } = useCart();
   const [isAdded, setIsAdded] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  console.log("🃏 Компонент рендерится");
-  console.log("🃏 product:", product);
-  console.log("🃏 addItem:", typeof addItem);
-  console.log("🃏 isInCart:", typeof isInCart);
 
   const formattedPrice = new Intl.NumberFormat("ru-RU", {
     style: "currency",
@@ -33,42 +27,38 @@ export function ProductCard({
   const imageSrc = product.image || notImage;
   const inCart = isInCart(product.id);
 
-  console.log("🃏 inCart:", inCart);
-
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    console.log("🖱️ КЛИК по кнопке!");
-    console.log("🖱️ product.id:", product.id);
-    console.log("🖱️ product.id тип:", typeof product.id);
+    if (inCart) return; // Дополнительная защита
 
-    try {
-      const itemToAdd = {
-        id: String(product.id), // 👈 Принудительно преобразуем в строку
-        name: product.name,
-        price: product.price,
-        image: product.image || notImage,
-        material: product.material,
-        sizes: product.sizes,
-      };
+    addItem({
+      id: String(product.id),
+      name: product.name,
+      price: product.price,
+      image: product.image || notImage,
+      material: product.material,
+      sizes: product.sizes,
+    });
 
-      console.log("🖱️ Добавляем в корзину:", itemToAdd);
-      addItem(itemToAdd);
-      console.log("✅ Успешно добавлено!");
-
-      setIsAdded(true);
-      setError(null);
-      setTimeout(() => setIsAdded(false), 1500);
-    } catch (err) {
-      console.error("❌ Ошибка:", err);
-      setError(String(err));
-    }
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 1500);
   };
+
+  // Определяем текст кнопки и её состояние
+  const getButtonState = () => {
+    if (isAdded)
+      return { text: "✓ Добавлено!", disabled: true, className: styles.added };
+    if (inCart)
+      return { text: "В корзине", disabled: true, className: styles.inCart };
+    return { text: "Заказать", disabled: false, className: "" };
+  };
+
+  const buttonState = getButtonState();
 
   return (
     <div className={`${styles.card} ${styles[variant]}`}>
-      {error && <div style={{ color: "red" }}>Ошибка: {error}</div>}
       <Link to={`/product/${product.id}`} className={styles.link}>
         <div className={styles.imageWrapper}>
           <img
@@ -96,12 +86,11 @@ export function ProductCard({
           <div className={styles.priceWrapper}>
             <span className={styles.price}>{formattedPrice}</span>
             <button
-              className={`${styles.buyBtn} ${isAdded ? styles.added : ""}`}
+              className={`${styles.buyBtn} ${buttonState.className}`}
               onClick={handleAddToCart}
-              // Убираем disabled для теста
-              // disabled={inCart}
+              disabled={buttonState.disabled}
             >
-              {isAdded ? "✓ Добавлено!" : "Заказать"}
+              {buttonState.text}
             </button>
           </div>
         </div>

@@ -1,55 +1,373 @@
+// src/pages/Contacts/ContactsPage.module.scss
+
+@import "@/styles/mixins";
+
 .contactsPage {
   padding: 60px 0;
   min-height: 60vh;
 
-  h3 {
-    padding-bottom: 20px;
-  }
-
-  .contactsItems {
-    padding: 40px 0;
-    p {
-      margin: 0;
-      font-size: 26px;
-    }
-    .contactsItem {
-      padding: 40px 0;
-      div {
-        padding: 10px 0;
-        display: flex;
-        a {
-          display: flex;
-          align-items: center; //выровниить текст
-          font-size: 25px;
-          text-decoration: none;
-          img {
-            padding-right: 10px;
-            width: 60px;
-          }
-        }
-      }
-    }
-  }
-
   @include mobile {
+    padding: 30px 0;
+  }
+
+  @include tablet {
     padding: 40px 0;
   }
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
-  @include tablet {
-    font-size: 1.7rem;
-  }
+  h3 {
+    font-size: 28px;
+    padding-bottom: 20px;
+    font-weight: 600;
 
-  @include mobile {
-    font-size: 1.5rem;
+    @include mobile {
+      font-size: 20px;
+      padding-bottom: 15px;
+    }
+
+    @include tablet {
+      font-size: 24px;
+      padding-bottom: 18px;
+    }
   }
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  color: #666;
+// Стили для табов
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+
+  @include mobile {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .tabBtn {
+    padding: 12px 24px;
+    background: #000000;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #cfcfcf;
+
+    @include mobile {
+      padding: 10px 16px;
+      font-size: 14px;
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+    }
+
+    @include tablet {
+      padding: 11px 20px;
+      font-size: 15px;
+    }
+
+    &:hover:not(.active) {
+      background: #000000;
+      color: #cdcccc;
+    }
+
+    &.active {
+      background: #dddddd;
+      color: #595959;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+.mapContainer {
+  display: flex;
+  gap: 30px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  @include mobile {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  @include tablet {
+    flex-direction: column;
+    gap: 25px;
+    padding: 18px;
+  }
+}
+
+.mapWrapper {
+  flex: 2;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #e0e0e0;
+
+  iframe {
+    display: block;
+    width: 100%;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.contactInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+
+  @include mobile {
+    gap: 15px;
+  }
+
+  .address,
+  .time {
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #140f0f;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      @include mobile {
+        font-size: 14px;
+      }
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+
+      @include mobile {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .address {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+
+    @include mobile {
+      padding-bottom: 12px;
+    }
+  }
+}
+
+.contactsItems {
+  padding: 50px 0 20px;
+  border-top: 2px solid #f0f0f0;
+
+  .orderCallModal {
+    button {
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+
+  @include mobile {
+    padding: 30px 0 10px;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+
+    @include mobile {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    @include tablet {
+      font-size: 28px;
+    }
+  }
+
+  .contactsSubtitle {
+    font-size: 18px;
+    color: #e4dddd;
+    margin: 5px 0;
+    line-height: 1.5;
+
+    @include mobile {
+      font-size: 15px;
+    }
+
+    @include tablet {
+      font-size: 16px;
+    }
+  }
+
+  .contactsItem {
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    @include mobile {
+      padding: 20px 0;
+      gap: 3px;
+    }
+
+    div {
+      padding: 8px 0;
+
+      @include mobile {
+        padding: 6px 0;
+      }
+    }
+
+    .socialLink {
+      display: inline-flex;
+      align-items: center;
+      font-size: 22px;
+      text-decoration: none;
+      color: #e4dddd;
+      transition: all 0.3s ease;
+      gap: 15px;
+
+      @include mobile {
+        font-size: 17px;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      @include tablet {
+        font-size: 19px;
+        gap: 14px;
+      }
+
+      &:hover {
+        color: #b6b3b3;
+        transform: translateX(5px);
+
+        @include mobile {
+          transform: translateX(3px);
+        }
+      }
+
+      .socialIcon {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        flex-shrink: 0;
+
+        @include mobile {
+          width: 40px;
+          height: 40px;
+        }
+
+        @include tablet {
+          width: 45px;
+          height: 45px;
+        }
+      }
+
+      span {
+        word-break: break-word;
+      }
+    }
+  }
+}
+
+// Анимация для табов
+.tabBtn {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: #140f0f;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  &.active::after {
+    width: 60%;
+  }
+}
+
+// Дополнительные адаптивные настройки
+@media (max-width: 400px) {
+  .tabs {
+    .tabBtn {
+      font-size: 12px;
+      padding: 8px 12px;
+    }
+  }
+
+  .contactsItems {
+    .socialLink {
+      font-size: 15px !important;
+
+      .socialIcon {
+        width: 32px !important;
+        height: 32px !important;
+      }
+    }
+  }
+
+  .contactInfo {
+    .address p,
+    .time p {
+      font-size: 13px !important;
+    }
+  }
+}
+
+// Улучшение для больших экранов
+@media (min-width: 1400px) {
+  .mapContainer {
+    gap: 40px;
+    padding: 30px;
+  }
+
+  .contactsItems {
+    .socialLink {
+      font-size: 24px;
+    }
+  }
+}
+
+// Анимация появления карты
+.mapContainer {
+  animation: fadeIn 0.5s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

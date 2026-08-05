@@ -3,9 +3,7 @@ import { useCart } from "@/context/CartContext";
 import { Link } from "react-router-dom";
 import { Container } from "@/components/ui/Container/Container";
 import { CheckoutModal } from "@/components/CheckoutModal/CheckoutModal.tsx";
-import { useState } from "react";
-
-// import "../../styles/mixins.scss"; // Убедитесь, что путь правильный
+import { useState, useEffect } from "react";
 import styles from "./Cart.module.scss";
 
 const Cart = () => {
@@ -13,6 +11,16 @@ const Cart = () => {
     useCart();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [inputValues, setInputValues] = useState<Record<string, string>>({});
+
+  // Синхронизируем inputValues с актуальными данными из корзины
+  useEffect(() => {
+    const newInputValues: Record<string, string> = {};
+    items.forEach((item) => {
+      newInputValues[item.id] = String(item.quantity);
+    });
+    setInputValues(newInputValues);
+  }, [items]);
 
   const formattedPrice = (price: number) => {
     return new Intl.NumberFormat("ru-RU", {
@@ -20,6 +28,51 @@ const Cart = () => {
       currency: "RUB",
       minimumFractionDigits: 0,
     }).format(price);
+  };
+
+  // Обработчик изменения количества через input
+  const handleQuantityChange = (itemId: string, value: string) => {
+    // Разрешаем ввод только цифр
+    if (value === "" || /^\d+$/.test(value)) {
+      setInputValues((prev) => ({ ...prev, [itemId]: value }));
+    }
+  };
+
+  // Обработчик потери фокуса (валидация)
+  const handleQuantityBlur = (itemId: string) => {
+    const value = inputValues[itemId];
+    if (value) {
+      const numValue = parseInt(value);
+      if (!isNaN(numValue) && numValue > 0) {
+        updateQuantity(itemId, numValue);
+      } else {
+        // Если значение невалидное, возвращаем текущее количество из корзины
+        const item = items.find((i) => i.id === itemId);
+        if (item) {
+          setInputValues((prev) => ({
+            ...prev,
+            [itemId]: String(item.quantity),
+          }));
+        }
+      }
+    }
+  };
+
+  // Обработчик клавиши Enter
+  const handleQuantityKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    itemId: string,
+  ) => {
+    if (e.key === "Enter") {
+      handleQuantityBlur(itemId);
+      (e.target as HTMLInputElement).blur();
+    }
+  };
+
+  // Обновление количества через кнопки +/-
+  const handleUpdateQuantity = (itemId: string, newQuantity: number) => {
+    updateQuantity(itemId, newQuantity);
+    // Значение обновится автоматически через useEffect
   };
 
   if (items.length === 0) {
@@ -70,15 +123,32 @@ const Cart = () => {
                   <div className={styles.quantityControls}>
                     <button
                       className={styles.quantityBtn}
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      onClick={() =>
+                        handleUpdateQuantity(item.id, item.quantity - 1)
+                      }
                       disabled={item.quantity <= 1}
                     >
                       −
                     </button>
-                    <span className={styles.quantity}>{item.quantity}</span>
+
+                    <input
+                      type="text"
+                      className={styles.quantityInput}
+                      value={inputValues[item.id] ?? item.quantity}
+                      onChange={(e) =>
+                        handleQuantityChange(item.id, e.target.value)
+                      }
+                      onBlur={() => handleQuantityBlur(item.id)}
+                      onKeyDown={(e) => handleQuantityKeyDown(e, item.id)}
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                    />
+
                     <button
                       className={styles.quantityBtn}
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      onClick={() =>
+                        handleUpdateQuantity(item.id, item.quantity + 1)
+                      }
                     >
                       +
                     </button>

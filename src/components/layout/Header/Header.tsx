@@ -10,7 +10,6 @@ import CartIcon from "@/components/ui/CartIcon/CartIcon.tsx";
 
 import { socialContacts } from "@/utils/constants.ts";
 import { useState } from "react";
-// import { CheckoutModal } from "@/components/CheckoutModal/CheckoutModal.tsx";
 import { OrderCallModal } from "@/components/ui/OrderCallModal/OrderCallModal.tsx";
 
 export function Header() {
@@ -23,7 +22,6 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Container size="full" className={styles.headerContainer}>
-        {/* Левая часть - Логотип (разный для разных экранов) */}
         <Link to="/" className={styles.logoLink}>
           <div className={styles.logoSection}>
             <Logo />
@@ -50,7 +48,7 @@ export function Header() {
                 href={`tel:${socialContacts.phoneNumber}`}
                 className={styles.phone}
               >
-                {socialContacts.phoneNumber}
+                8 (903) 354-48-54
               </a>
               <button
                 className={styles.callbackBtn}

@@ -21,7 +21,7 @@
   line-height: 1.2;                   // Межстрочный интервал
 
   span {
-    display: block;                   // Переносим на новую строку
+//    display: block;                   // Переносим на новую строку
     color: #ffd700;                    // Золотой цвет
     font-size: 2rem;                   // Меньше основного заголовка
   }
@@ -48,6 +48,7 @@
 }
 
 .buttons {
+  padding: 20px;
   display: flex;
   gap: 20px;                          // Промежуток между кнопками
   flex-wrap: wrap;                     // Перенос на новую строку если не влезают
@@ -88,5 +89,15 @@
     background: white;
     color: #2c3e50;
     transform: translateY(-2px);
+  }
+}
+
+.description {
+  padding: 10px 0;
+  h3 {
+    padding: 10px 0;
+  }
+  li{
+    padding: 5px 0;
   }
 }

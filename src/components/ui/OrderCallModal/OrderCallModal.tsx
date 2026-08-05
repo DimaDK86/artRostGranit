@@ -1,3 +1,4 @@
+// src/components/OrderCallModal/OrderCallModal.tsx
 import { useState } from "react";
 import { sendOrderCall } from "@/services/telegramServiceOrderCall.ts";
 import styles from "./OrderCallModal.module.scss";
@@ -24,17 +25,54 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+
+  // Проверка телефона (только цифры, 11 цифр, начинается с 7, 8 или 9)
+  const validatePhone = (phone: string): boolean => {
+    const digits = phone.replace(/\D/g, "");
+    return digits.length === 11 && ["7", "8", "9"].includes(digits[0]);
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "phone") {
+      // Оставляем только цифры
+      const digits = value.replace(/\D/g, "");
+      // Ограничиваем 11 цифрами
+      const limited = digits.slice(0, 11);
+      setFormData((prev) => ({ ...prev, [name]: limited }));
+
+      // Проверяем валидность при вводе
+      if (limited.length === 11) {
+        if (!validatePhone(limited)) {
+          setPhoneError("Номер должен начинаться с 7, 8 или 9");
+        } else {
+          setPhoneError(null);
+        }
+      } else {
+        setPhoneError(null);
+      }
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+
     setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Проверяем телефон перед отправкой
+    if (!validatePhone(formData.phone)) {
+      setPhoneError(
+        "Введите корректный номер (11 цифр, начинается с 7, 8 или 9)",
+      );
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
@@ -50,7 +88,6 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
 
       console.log("✅ ожидайте обратного звонка!");
       setIsSuccess(true);
-      // clearCart();
 
       setTimeout(() => {
         setIsSuccess(false);
@@ -61,6 +98,7 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
           email: "",
           comment: "",
         });
+        setPhoneError(null);
       }, 3000);
     } catch (error) {
       console.error("❌ Ошибка:", error);
@@ -79,7 +117,11 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onClose}>
+        <button
+          className={styles.closeBtn}
+          onClick={onClose}
+          disabled={isSubmitting || isSuccess}
+        >
           ✕
         </button>
 
@@ -87,15 +129,23 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
 
         {isSuccess ? (
           <div className={styles.success}>
-            <h3>✅ заявка успешно отправлена!</h3>
+            <h3>✅ Заявка успешно отправлена!</h3>
             <p>Скоро с вами свяжется менеджер.</p>
+            <p className={styles.timer}>Закрытие через 3 секунды...</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className={styles.form}>
-            {error && <div className={styles.error}>❌ {error}</div>}
+            {error && (
+              <div className={styles.error}>
+                ❌ технические неполадки, Ваша заявка на обратный звонок не
+                отправлена... попробуйте еще раз...
+              </div>
+            )}
 
             <div className={styles.formGroup}>
-              <label htmlFor="name">ФИО *</label>
+              <label htmlFor="name">
+                ФИО <span className={styles.required}>*</span>
+              </label>
               <input
                 type="text"
                 id="name"
@@ -104,11 +154,14 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
                 onChange={handleChange}
                 required
                 placeholder="Иванов Иван Иванович"
+                disabled={isSubmitting}
               />
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="phone">Телефон *</label>
+              <label htmlFor="phone">
+                Телефон <span className={styles.required}>*</span>
+              </label>
               <input
                 type="tel"
                 id="phone"
@@ -116,8 +169,14 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                placeholder="+7 (999) 123-45-67"
+                placeholder="89001234567"
+                maxLength={11}
+                className={phoneError ? styles.errorInput : ""}
+                disabled={isSubmitting}
               />
+              {phoneError && (
+                <span className={styles.errorMessage}>{phoneError}</span>
+              )}
             </div>
 
             <div className={styles.formGroup}>
@@ -129,6 +188,7 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="example@mail.ru"
+                disabled={isSubmitting}
               />
             </div>
 
@@ -141,6 +201,7 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
                 onChange={handleChange}
                 placeholder="Дополнительные пожелания..."
                 rows={3}
+                disabled={isSubmitting}
               />
             </div>
 
@@ -149,7 +210,14 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
               className={styles.submitBtn}
               disabled={isSubmitting}
             >
-              {isSubmitting ? "ищем оператора..." : "Заказать обратный звонок"}
+              {isSubmitting ? (
+                <>
+                  <span className={styles.spinner}></span>
+                  Ищем оператора...
+                </>
+              ) : (
+                "Заказать обратный звонок"
+              )}
             </button>
           </form>
         )}

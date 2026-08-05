@@ -49,6 +49,7 @@
 }
 
 .stats {
+  padding-top: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);  // Три колонки
   gap: 30px;

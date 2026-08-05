@@ -44,8 +44,21 @@ const ProductPage = () => {
     minimumFractionDigits: 0,
   }).format(product.price);
 
+  // Единая логика для состояния кнопки
+  const getButtonState = () => {
+    if (isAdded)
+      return { text: "✓ Добавлено!", disabled: true, className: styles.added };
+    if (inCart)
+      return { text: "В корзине", disabled: true, className: styles.inCart };
+    return { text: "Заказать", disabled: false, className: "" };
+  };
+
+  const buttonState = getButtonState();
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    if (inCart) return;
 
     addItem({
       id: String(product.id),
@@ -105,11 +118,11 @@ const ProductPage = () => {
                 </strong>
               </div>
               <button
-                className={`${styles.buyBtn} ${isAdded ? styles.added : ""} ${inCart ? styles.inCart : ""}`}
+                className={`${styles.buyBtn} ${buttonState.className}`}
                 onClick={handleAddToCart}
-                disabled={inCart}
+                disabled={buttonState.disabled}
               >
-                {isAdded ? "✓ Добавлено!" : inCart ? "В корзине" : "Заказать"}
+                {buttonState.text}
               </button>
             </div>
           </div>

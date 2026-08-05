@@ -1,4 +1,5 @@
-// src/components/CheckoutModal/CheckoutModal.module.scss
+// src/components/OrderCallModal/OrderCallModal.module.scss
+
 .overlay {
   position: fixed;
   top: 0;
@@ -12,6 +13,11 @@
   z-index: 9999;
   padding: 20px;
   animation: fadeIn 0.3s ease;
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    align-items: flex-end;
+  }
 }
 
 .modal {
@@ -26,7 +32,27 @@
   animation: slideUp 0.3s ease;
 
   @media (max-width: 768px) {
+    padding: 30px;
+  }
+
+  @media (max-width: 480px) {
     padding: 20px;
+    max-height: 95vh;
+    border-radius: 16px 16px 0 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 2px;
   }
 }
 
@@ -39,10 +65,25 @@
   font-size: 24px;
   cursor: pointer;
   color: #999;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  padding: 5px 10px;
+  border-radius: 4px;
+  z-index: 10;
 
-  &:hover {
+  @media (max-width: 480px) {
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+  }
+
+  &:hover:not(:disabled) {
     color: #333;
+    background: #f0f0f0;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
@@ -52,21 +93,49 @@
   text-align: center;
   color: #140f0f;
   font-family: 'MontserratBold', sans-serif;
+
+  @media (max-width: 480px) {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
 }
 
 .success {
   text-align: center;
   padding: 30px 0;
 
+  @media (max-width: 480px) {
+    padding: 20px 0;
+  }
+
   h3 {
     font-size: 24px;
     color: #27ae60;
     margin-bottom: 10px;
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
   }
 
   p {
     font-size: 16px;
     color: #666;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
+
+  .timer {
+    color: #888;
+    font-size: 14px;
+    margin-top: 10px;
+    animation: pulse 1s ease-in-out infinite;
+
+    @media (max-width: 480px) {
+      font-size: 13px;
+    }
   }
 }
 
@@ -74,19 +143,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.orderSummary {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 16px;
-
-  strong {
-    color: #140f0f;
-  }
 }
 
 .formGroup {
@@ -98,29 +154,88 @@
     font-size: 14px;
     font-weight: 600;
     color: #333;
+
+    @media (max-width: 480px) {
+      font-size: 13px;
+    }
+
+    .required {
+      color: #e74c3c;
+      margin-left: 2px;
+    }
   }
 
   input,
   textarea {
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
+    background: white;
+
+    @media (max-width: 480px) {
+      padding: 14px 12px;
+      font-size: 16px; // Предотвращает зум на iOS
+    }
 
     &:focus {
       outline: none;
       border-color: #140f0f;
+      box-shadow: 0 0 0 3px rgba(20, 15, 15, 0.1);
     }
 
     &::placeholder {
       color: #999;
     }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background: #f8f9fa;
+    }
+
+    &.errorInput {
+      border-color: #e74c3c;
+
+      &:focus {
+        border-color: #e74c3c;
+        box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+      }
+    }
   }
 
   textarea {
     resize: vertical;
+    min-height: 80px;
     font-family: inherit;
+  }
+
+  .errorMessage {
+    display: block;
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 4px;
+    animation: shake 0.3s ease;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
+}
+
+.error {
+  background: #fde8e8;
+  color: #e74c3c;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  border-left: 4px solid #e74c3c;
+  margin-bottom: 5px;
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    padding: 10px 12px;
   }
 }
 
@@ -135,6 +250,13 @@
   cursor: pointer;
   transition: all 0.3s;
   margin-top: 10px;
+  position: relative;
+
+  @media (max-width: 480px) {
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
 
   &:hover:not(:disabled) {
     background: #333;
@@ -142,12 +264,31 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
+  &:active:not(:disabled) {
+    @media (max-width: 480px) {
+      transform: scale(0.98);
+    }
+  }
+
   &:disabled {
-    opacity: 0.6;
+    opacity: 0.7;
     cursor: not-allowed;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.6s linear infinite;
+    margin-right: 10px;
+    vertical-align: middle;
   }
 }
 
+// Анимации
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -165,5 +306,97 @@
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Адаптация для очень маленьких экранов
+@media (max-width: 360px) {
+  .modal {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .formGroup {
+    input,
+    textarea {
+      padding: 12px 10px;
+      font-size: 14px;
+    }
+  }
+
+  .submitBtn {
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+// Стили для планшетов
+@media (min-width: 481px) and (max-width: 768px) {
+  .modal {
+    max-width: 450px;
+    padding: 30px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .submitBtn {
+    font-size: 17px;
+  }
+}
+
+// Улучшение для больших экранов
+@media (min-width: 1200px) {
+  .modal {
+    max-width: 550px;
+    padding: 50px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .formGroup {
+    input,
+    textarea {
+      padding: 14px 16px;
+      font-size: 17px;
+    }
+  }
+
+  .submitBtn {
+    padding: 16px;
+    font-size: 20px;
   }
 }
