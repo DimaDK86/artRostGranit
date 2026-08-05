@@ -40,8 +40,8 @@
   animation: slideIn 0.5s ease;
   
   @include mobile {
-    top: 70px;
-    height: calc(100vh - 70px);
+    top: 90px;
+    height: calc(100vh - 90px);
   }
 }
 

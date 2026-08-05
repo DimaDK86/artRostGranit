@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+// src/pages/ProductPage/ProductPage.tsx
+import { useParams, Link } from "react-router-dom";
 import { mockProducts } from "@/types/product.types";
 import notImage from "@/assets/images/product/not_image.jpg";
 import { Container } from "@/components/ui/Container/Container";
@@ -7,24 +8,28 @@ import { useState } from "react";
 import styles from "./ProductPage.module.scss";
 import ImageCarousel from "@/components/ui/Carousel/ImageCarousel";
 
-import React from "react";
-
 const ProductPage = () => {
   const { id } = useParams();
   const { addItem, isInCart } = useCart();
   const [isAdded, setIsAdded] = useState(false);
 
-  // Находим товар по ID
   const product = mockProducts.find((p) => p.id === id);
 
   if (!product) {
-    return <div>Товар не найден</div>;
+    return (
+      <Container size="wide">
+        <div className={styles.notFound}>
+          <h2>🔍 Товар не найден</h2>
+          <p>Извините, запрашиваемый товар отсутствует в каталоге</p>
+          <Link to="/catalog" className={styles.backLink}>
+            Вернуться в каталог
+          </Link>
+        </div>
+      </Container>
+    );
   }
 
-  // Проверяем, есть ли массив изображений и не пустой ли он
   const hasImages = product.images && product.images.length > 0;
-
-  // 👇 ГАРАНТИРУЕМ, что images это всегда массив строк
   const images: string[] =
     product.images && product.images.length > 0
       ? product.images
@@ -41,8 +46,6 @@ const ProductPage = () => {
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
-
-    console.log("🛒 Добавляем товар в корзину:", product);
 
     addItem({
       id: String(product.id),
@@ -63,13 +66,11 @@ const ProductPage = () => {
         <h1 className={styles.productTitle}>{product.name}</h1>
 
         <div className={styles.productCardInfo}>
-          {/* 👇 Если есть массив с картинками - показываем карусель */}
           {hasImages ? (
             <div className={styles.productCardInfoImage}>
               <ImageCarousel images={images} height={480} />
             </div>
           ) : (
-            // 👇 Если нет массива - показываем одно изображение
             <div className={styles.productCardInfoImage}>
               <img
                 src={imageSrc}

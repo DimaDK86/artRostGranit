@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Container } from "@/components/ui/Container/Container";
 import { CheckoutModal } from "@/components/CheckoutModal/CheckoutModal.tsx";
 import { useState } from "react";
+
+// import "../../styles/mixins.scss"; // Убедитесь, что путь правильный
 import styles from "./Cart.module.scss";
 
 const Cart = () => {

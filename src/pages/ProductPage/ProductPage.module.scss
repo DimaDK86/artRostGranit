@@ -1,11 +1,31 @@
+// src/pages/ProductPage/ProductPage.module.scss
+
 @use '@/styles/mixins' as *;
 
 .productCard {
   padding: 20px;
 
+  @include mobile {
+    padding: 10px;
+  }
+
+  @include tablet {
+    padding: 15px;
+  }
+
   .productTitle {
     text-align: center;
     padding: 20px 0;
+
+    @include mobile {
+      font-size: 24px;
+      padding: 15px 0;
+    }
+
+    @include tablet {
+      font-size: 28px;
+      padding: 18px 0;
+    }
   }
 
   .productCardInfo {
@@ -15,6 +35,16 @@
     gap: 30px;
     align-items: stretch;
 
+    @include tablet {
+      gap: 25px;
+    }
+
+    @include mobile {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
     .productCardInfoImage,
     .productCardInfoDescription {
       flex: 1;
@@ -23,12 +53,31 @@
     .productCardInfoImage {
       display: flex;
       justify-content: center;
+      align-items: center;
 
-            img {
-              max-width: 300px;
-              max-height: 500px;
-              border-radius: 10px;
-            }
+      @include mobile {
+//        width: 100%;
+        max-width: 250px;
+      }
+
+      img {
+        max-width: 300px;
+        max-height: 500px;
+        border-radius: 10px;
+        object-fit: cover;
+
+        @include mobile {
+          max-width: 100%;
+          max-height: 300px;
+          width: 100%;
+          height: auto;
+        }
+
+        @include tablet {
+          max-width: 350px;
+          max-height: 450px;
+        }
+      }
     }
 
     .productCardInfoDescription {
@@ -37,27 +86,91 @@
       display: flex;
       flex-direction: column;
 
+      @include mobile {
+        width: 100%;
+        font-size: 16px;
+        padding: 0 5px;
+      }
+
+      @include tablet {
+        font-size: 18px;
+      }
+
       // Контентная часть (описание, материал, размеры)
       .infoContent {
         display: flex;
         flex-direction: column;
-        flex: 1; // Занимает всё доступное пространство
+        flex: 1;
         gap: 15px;
+        color: white;
+
+        @include mobile {
+          gap: 12px;
+        }
+
+        p {
+          @include mobile {
+            font-size: 15px;
+            line-height: 1.6;
+          }
+
+          strong {
+            display: inline-block;
+            margin-left: 8px;
+            font-weight: 600;
+            color: #cdcbcb;
+
+            @include mobile {
+              display: block;
+              margin-left: 0;
+              margin-top: 4px;
+            }
+          }
+        }
       }
 
       // Нижняя часть (цена + кнопка)
       .bottomSection {
-        margin-top: auto; // 👈 Прижимает к низу
+        margin-top: auto;
         display: flex;
         flex-direction: column;
-        align-items: flex-end; // 👈 Выравнивает по правому краю
+        align-items: flex-end;
         gap: 15px;
         padding-top: 20px;
-        border-top: 1px solid #e0e0e0; // Разделительная линия (опционально)
+        border-top: 1px solid #e0e0e0;
+
+        @include mobile {
+          align-items: stretch;
+          gap: 12px;
+          padding-top: 15px;
+        }
+
+        @include tablet {
+          align-items: flex-end;
+          gap: 14px;
+        }
       }
 
       .priceWrapper {
         font-size: 30px;
+
+        @include mobile {
+          font-size: 24px;
+          text-align: center;
+        }
+
+        @include tablet {
+          font-size: 26px;
+        }
+
+        strong {
+          color: #efebeb;
+        }
+
+        .price {
+          margin-left: 10px;
+          font-weight: bold;
+        }
       }
 
       .buyBtn {
@@ -71,11 +184,235 @@
         font-size: 18px;
         transition: all 0.3s ease;
 
-        &:hover {
-          background-color: #333;
-          transform: scale(1.02);
+        @include mobile {
+          width: 100%;
+          padding: 16px;
+          font-size: 16px;
+          border-radius: 12px;
+        }
+
+        @include tablet {
+          width: 180px;
+          padding: 18px;
+          font-size: 17px;
+        }
+
+        @include hover {
+          &:hover {
+            background-color: #333;
+            transform: scale(1.02);
+          }
+        }
+
+        &:active {
+          @include mobile {
+            transform: scale(0.98);
+          }
+        }
+
+        &.added {
+          background-color: #27ae60;
+
+          @include hover {
+            &:hover {
+              background-color: #27ae60;
+            }
+          }
+        }
+
+        &.inCart {
+          background-color: #95a5a6;
+          cursor: not-allowed;
+
+          @include hover {
+            &:hover {
+              background-color: #95a5a6;
+              transform: none;
+            }
+          }
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
         }
       }
     }
+  }
+}
+
+// Дополнительные стили для карусели на мобильных
+.productCardInfoImage {
+  :global {
+    .carousel {
+      @include mobile {
+        width: 100% !important;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
+
+    .carousel-slide {
+      @include mobile {
+        height: 300px !important;
+      }
+    }
+
+    .carousel-image {
+      @include mobile {
+        object-fit: contain !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    .carousel-button {
+      @include mobile {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 14px !important;
+      }
+    }
+
+    .carousel-indicators {
+      @include mobile {
+        bottom: 10px !important;
+        gap: 6px !important;
+      }
+    }
+
+    .carousel-indicator {
+      @include mobile {
+        width: 8px !important;
+        height: 8px !important;
+      }
+    }
+  }
+}
+
+// Стили для страницы "Товар не найден"
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 20px;
+  text-align: center;
+
+  @include mobile {
+    min-height: 50vh;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 32px;
+    color: #888;
+
+    @include mobile {
+      font-size: 24px;
+    }
+  }
+
+  p {
+    font-size: 18px;
+    color: #666;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  .backLink {
+    padding: 12px 30px;
+    background-color: #140f0f;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s;
+
+    @include mobile {
+      padding: 12px 24px;
+      font-size: 14px;
+    }
+
+    @include hover {
+      &:hover {
+        background-color: #333;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Адаптация для очень маленьких экранов
+@media (max-width: 360px) {
+  .productCard {
+    .productTitle {
+      font-size: 20px;
+      padding: 12px 0;
+    }
+
+    .productCardInfoDescription {
+      font-size: 14px;
+
+      .infoContent {
+        gap: 10px;
+
+        p {
+          font-size: 14px;
+        }
+      }
+
+      .priceWrapper {
+        font-size: 20px;
+      }
+
+      .buyBtn {
+        padding: 14px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// Улучшенная читаемость на планшетах в портретной ориентации
+@media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
+  .productCard {
+    .productCardInfo {
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+
+      .productCardInfoImage {
+        width: 100%;
+        max-width: 450px;
+      }
+
+      .productCardInfoDescription {
+        width: 100%;
+        max-width: 450px;
+      }
+    }
+  }
+}
+
+// Анимация добавления в корзину
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.buyBtn {
+  &.added {
+    animation: pulse 0.5s ease;
   }
 }

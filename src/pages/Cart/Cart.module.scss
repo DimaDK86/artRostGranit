@@ -1,4 +1,7 @@
 // src/pages/Cart/Cart.module.scss
+
+@import "@/styles/mixins";
+
 .emptyCart {
   display: flex;
   flex-direction: column;
@@ -6,15 +9,37 @@
   justify-content: center;
   min-height: 60vh;
   gap: 20px;
+  padding: 20px;
+
+  @include mobile {
+    min-height: 50vh;
+    gap: 15px;
+    padding: 15px;
+  }
 
   h2 {
     font-size: 32px;
     color: #888;
+
+    @include mobile {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    @include tablet {
+      font-size: 28px;
+    }
   }
 
   p {
     font-size: 18px;
     color: #666;
+
+    @include mobile {
+      font-size: 16px;
+      text-align: center;
+      padding: 0 10px;
+    }
   }
 
   .continueShopping {
@@ -25,7 +50,14 @@
     text-decoration: none;
     transition: all 0.3s;
 
-    &:hover {
+    @include mobile {
+      padding: 12px 24px;
+      font-size: 14px;
+      width: 80%;
+      text-align: center;
+    }
+
+    @include hover {
       background-color: #333;
       transform: translateY(-2px);
     }
@@ -35,17 +67,41 @@
 .cartPage {
   padding: 40px 0;
 
+  @include mobile {
+    padding: 20px 0;
+  }
+
+  @include tablet {
+    padding: 30px 0;
+  }
+
   .cartTitle {
     font-size: 32px;
     margin-bottom: 30px;
     text-align: center;
+
+    @include mobile {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    @include tablet {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
   }
 
   .cartContent {
     display: flex;
     gap: 40px;
 
-    @media (max-width: 768px) {
+    @include tablet {
+      gap: 30px;
+      flex-direction: column;
+    }
+
+    @include mobile {
+      gap: 20px;
       flex-direction: column;
     }
   }
@@ -55,6 +111,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @include mobile {
+      gap: 15px;
+    }
   }
 
   .cartItem {
@@ -67,27 +127,56 @@
     align-items: center;
     transition: box-shadow 0.3s;
 
-    &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    @include mobile {
+      flex-direction: column;
+      padding: 15px;
+      gap: 15px;
+      align-items: stretch;
     }
 
-    h3 {
-      color: #000000;
+    @include tablet {
+      padding: 18px;
+      gap: 18px;
+    }
+
+    @include hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .itemImage {
       width: 100px;
-      height: 100px;
+      height: 160px;
       object-fit: cover;
       border-radius: 8px;
+      flex-shrink: 0;
+
+      @include mobile {
+        width: 80px;
+        height: 120px;
+        align-self: center;
+      }
+
+      @include tablet {
+        width: 80px;
+        height: 120px;
+      }
     }
 
     .itemInfo {
       flex: 1;
 
+      @include mobile {
+        text-align: center;
+      }
+
       .itemName {
         font-size: 18px;
         margin-bottom: 5px;
+        color: #000;
+
+        @include mobile {
+          font-size: 16px;
+        }
       }
 
       .itemMaterial,
@@ -95,6 +184,10 @@
         font-size: 14px;
         color: #666;
         margin: 3px 0;
+
+        @include mobile {
+          font-size: 13px;
+        }
       }
 
       .itemPrice {
@@ -102,6 +195,10 @@
         font-weight: bold;
         margin-top: 5px;
         color: #140f0f;
+
+        @include mobile {
+          font-size: 18px;
+        }
       }
     }
 
@@ -109,6 +206,14 @@
       display: flex;
       align-items: center;
       gap: 15px;
+      flex-shrink: 0;
+
+      @include mobile {
+        justify-content: center;
+        gap: 20px;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+      }
 
       .quantityControls {
         display: flex;
@@ -129,14 +234,29 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: background-color 0.2s;
 
-          &:hover:not(:disabled) {
-            background-color: #f0f0f0;
+          @include mobile {
+            width: 36px;
+            height: 36px;
+            font-size: 20px;
+          }
+
+          @include hover {
+            &:hover:not(:disabled) {
+              background-color: #f0f0f0;
+            }
           }
 
           &:disabled {
             opacity: 0.3;
             cursor: not-allowed;
+          }
+
+          &:active:not(:disabled) {
+            @include mobile {
+              background-color: #e0e0e0;
+            }
           }
         }
 
@@ -146,6 +266,11 @@
           font-size: 16px;
           font-weight: 600;
           color: #000;
+
+          @include mobile {
+            min-width: 36px;
+            font-size: 18px;
+          }
         }
       }
 
@@ -157,10 +282,26 @@
         color: #999;
         transition: all 0.3s;
         padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        &:hover {
-          color: #e74c3c;
-          transform: scale(1.2);
+        @include mobile {
+          font-size: 28px;
+          padding: 8px;
+        }
+
+        @include hover {
+          &:hover {
+            color: #e74c3c;
+            transform: scale(1.2);
+          }
+        }
+
+        &:active {
+          @include mobile {
+            transform: scale(0.9);
+          }
         }
       }
     }
@@ -175,10 +316,29 @@
     position: sticky;
     top: 20px;
 
+    @include mobile {
+      padding: 20px;
+      position: static;
+    }
+
+    @include tablet {
+      padding: 25px;
+      position: static;
+    }
+
     h3 {
       font-size: 24px;
       margin-bottom: 20px;
       color: #000;
+
+      @include mobile {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      @include tablet {
+        font-size: 22px;
+      }
     }
 
     .summaryRow {
@@ -188,19 +348,32 @@
       padding: 12px 0;
       border-bottom: 1px solid #e0e0e0;
       color: #000;
-      
+
+      @include mobile {
+        font-size: 16px;
+        padding: 10px 0;
+      }
 
       &:last-of-type {
         border-bottom: none;
         font-weight: bold;
         font-size: 20px;
         padding-top: 15px;
+
+        @include mobile {
+          font-size: 18px;
+          padding-top: 12px;
+        }
       }
 
       .totalPrice {
         font-size: 24px;
         font-weight: bold;
         color: #140f0f;
+
+        @include mobile {
+          font-size: 20px;
+        }
       }
     }
 
@@ -217,10 +390,24 @@
       margin-top: 20px;
       transition: all 0.3s;
 
-      &:hover {
-        background-color: #333;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      @include mobile {
+        padding: 14px;
+        font-size: 16px;
+        margin-top: 15px;
+      }
+
+      @include hover {
+        &:hover {
+          background-color: #333;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      &:active {
+        @include mobile {
+          transform: scale(0.98);
+        }
       }
     }
 
@@ -236,9 +423,24 @@
       margin-top: 10px;
       transition: all 0.3s;
 
-      &:hover {
-        background-color: #e74c3c;
-        color: white;
+      @include mobile {
+        padding: 12px;
+        font-size: 13px;
+      }
+
+      @include hover {
+        &:hover {
+          background-color: #e74c3c;
+          color: white;
+        }
+      }
+
+      &:active {
+        @include mobile {
+          background-color: #e74c3c;
+          color: white;
+          transform: scale(0.98);
+        }
       }
     }
 
@@ -248,9 +450,134 @@
       margin-top: 15px;
       color: #666;
       text-decoration: underline;
+      transition: color 0.3s;
 
-      &:hover {
-        color: #333;
+      @include mobile {
+        margin-top: 12px;
+        font-size: 14px;
+      }
+
+      @include hover {
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+  }
+}
+
+// Дополнительные стили для улучшения UX на мобильных устройствах
+
+// Улучшенная прокрутка для длинных списков товаров
+.cartItems {
+  @include mobile {
+    max-height: none;
+
+    // Если товаров много, добавляем скролл
+    &:has(.cartItem:nth-child(4)) {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 5px;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 2px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+// Улучшенная читаемость на маленьких экранах
+.cartPage {
+  @include mobile {
+    .cartTitle {
+      word-break: break-word;
+    }
+  }
+}
+
+// Анимация для удаления товара (опционально)
+.cartItem {
+  animation: fadeIn 0.3s ease-in;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Адаптация для очень маленьких экранов
+@include mobile {
+  .cartItem {
+    .itemImage {
+      width: 80px;
+      height: 120px;
+    }
+
+    .itemInfo {
+      .itemName {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+// Специальные стили для экранов до 360px
+@media (max-width: 360px) {
+  .cartPage {
+    .cartItem {
+      padding: 12px;
+      gap: 12px;
+
+      .itemImage {
+        width: 80px;
+        height: 120px;
+      }
+
+      .itemControls {
+        .quantityControls {
+          .quantityBtn {
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .cartSummary {
+      padding: 15px;
+
+      .summaryRow {
+        font-size: 14px;
+
+        &:last-of-type {
+          font-size: 16px;
+        }
+
+        .totalPrice {
+          font-size: 18px;
+        }
+      }
+
+      .checkoutBtn {
+        padding: 12px;
+        font-size: 14px;
       }
     }
   }

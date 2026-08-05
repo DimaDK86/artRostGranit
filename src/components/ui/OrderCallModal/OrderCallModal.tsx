@@ -1,6 +1,4 @@
-// src/components/CheckoutModal/CheckoutModal.tsx
 import { useState } from "react";
-// import { useCart } from "@/context/CartContext";
 import { sendOrderCall } from "@/services/telegramServiceOrderCall.ts";
 import styles from "./OrderCallModal.module.scss";
 
@@ -13,28 +11,19 @@ interface OrderFormData {
   name: string;
   phone: string;
   email: string;
-  address: string;
   comment: string;
 }
 
 export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
-  // const { items, totalPrice, clearCart } = useCart();
   const [formData, setFormData] = useState<OrderFormData>({
     name: "",
     phone: "",
     email: "",
-    address: "",
     comment: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  //
-  // const formattedPrice = new Intl.NumberFormat("ru-RU", {
-  //   style: "currency",
-  //   currency: "RUB",
-  //   minimumFractionDigits: 0,
-  // }).format(totalPrice);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -52,15 +41,6 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
     try {
       const orderData = {
         ...formData,
-        // items: items.map((item) => ({
-        //   id: item.id,
-        //   name: item.name,
-        //   price: item.price,
-        //   quantity: item.quantity,
-        //   material: item.material,
-        //   sizes: item.sizes,
-        // })),
-        // totalPrice,
       };
 
       console.log("📦 Отправка заявки на звонок в Telegram...", orderData);
@@ -79,7 +59,6 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
           name: "",
           phone: "",
           email: "",
-          address: "",
           comment: "",
         });
       }, 3000);
@@ -114,15 +93,6 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
         ) : (
           <form onSubmit={handleSubmit} className={styles.form}>
             {error && <div className={styles.error}>❌ {error}</div>}
-
-            {/*<div className={styles.orderSummary}>*/}
-            {/*  /!*<p>*!/*/}
-            {/*  /!*  Товаров: <strong>{items.length}</strong>*!/*/}
-            {/*  /!*</p>*!/*/}
-            {/*  /!*<p>*!/*/}
-            {/*  /!*  Итого: <strong>{formattedPrice}</strong>*!/*/}
-            {/*  /!*</p>*!/*/}
-            {/*</div>*/}
 
             <div className={styles.formGroup}>
               <label htmlFor="name">ФИО *</label>
@@ -161,19 +131,6 @@ export const OrderCallModal = ({ isOpen, onClose }: CheckoutCallModalProps) => {
                 placeholder="example@mail.ru"
               />
             </div>
-
-            {/*<div className={styles.formGroup}>*/}
-            {/*  <label htmlFor="address">Адрес доставки</label>*/}
-            {/*  <input*/}
-            {/*    type="text"*/}
-            {/*    id="address"*/}
-            {/*    name="address"*/}
-            {/*    value={formData.address}*/}
-            {/*    onChange={handleChange}*/}
-            {/*    // required*/}
-            {/*    placeholder="г. Москва, ул. Примерная, д. 1, кв. 1"*/}
-            {/*  />*/}
-            {/*</div>*/}
 
             <div className={styles.formGroup}>
               <label htmlFor="comment">Комментарий</label>
