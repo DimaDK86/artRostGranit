@@ -12,11 +12,11 @@ import max from "@/assets/images/social/Max_logo-32x32.png";
 import { socialContacts } from "@/utils/constants.ts";
 import { OrderCallModal } from "@/components/ui/OrderCallModal/OrderCallModal.tsx";
 
-type TabType = "production" | "retail";
+type TabType = "retail" | "production";
 
 const ContactsPage = () => {
   const bp = useBreakpoints();
-  const [activeTab, setActiveTab] = useState<TabType>("production");
+  const [activeTab, setActiveTab] = useState<TabType>("retail");
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   const { phoneNumber, whatsappNumber, telegramUsername, maxUsername } =
@@ -50,49 +50,6 @@ const ContactsPage = () => {
   return (
     <div className={styles.contactsPage}>
       <Container size="normal">
-        <div className={styles.title}>
-          <h3>КАК НАС НАЙТИ | ЯндексКарты</h3>
-
-          {/* Табы */}
-          <div className={styles.tabs}>
-            <button
-              className={`${styles.tabBtn} ${activeTab === "production" ? styles.active : ""}`}
-              onClick={() => setActiveTab("production")}
-            >
-              Производство
-            </button>
-            <button
-              className={`${styles.tabBtn} ${activeTab === "retail" ? styles.active : ""}`}
-              onClick={() => setActiveTab("retail")}
-            >
-              Розничное представительство в МО
-            </button>
-          </div>
-
-          <div className={styles.mapContainer}>
-            <div className={styles.mapWrapper}>
-              <iframe
-                src={currentTab.mapUrl}
-                width={mapWidth}
-                height={mapHeight}
-                allowFullScreen
-                style={{ position: "relative", border: "none" }}
-                title={`Карта - ${currentTab.title}`}
-              />
-            </div>
-            <div className={styles.contactInfo}>
-              <div className={styles.address}>
-                <h4>Адрес</h4>
-                <p>{currentTab.address}</p>
-              </div>
-              <div className={styles.time}>
-                <h4>Режим работы</h4>
-                <p>{currentTab.workHours}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className={styles.contactsItems}>
           <h2>КОНТАКТЫ</h2>
           <p className={styles.contactsSubtitle}>
@@ -166,6 +123,49 @@ const ContactsPage = () => {
                 <img className={styles.socialIcon} src={max} alt="max" />
                 <span>@ChePopit</span>
               </a>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.title}>
+          <h3>КАК НАС НАЙТИ | ЯндексКарты</h3>
+
+          {/* Табы */}
+          <div className={styles.tabs}>
+            <button
+              className={`${styles.tabBtn} ${activeTab === "retail" ? styles.active : ""}`}
+              onClick={() => setActiveTab("retail")}
+            >
+              Розничное представительство в МО
+            </button>
+            <button
+              className={`${styles.tabBtn} ${activeTab === "production" ? styles.active : ""}`}
+              onClick={() => setActiveTab("production")}
+            >
+              Производство
+            </button>
+          </div>
+
+          <div className={styles.mapContainer}>
+            <div className={styles.mapWrapper}>
+              <iframe
+                src={currentTab.mapUrl}
+                width={mapWidth}
+                height={mapHeight}
+                allowFullScreen
+                style={{ position: "relative", border: "none" }}
+                title={`Карта - ${currentTab.title}`}
+              />
+            </div>
+            <div className={styles.contactInfo}>
+              <div className={styles.address}>
+                <h4>Адрес</h4>
+                <p>{currentTab.address}</p>
+              </div>
+              <div className={styles.time}>
+                <h4>Режим работы</h4>
+                <p>{currentTab.workHours}</p>
+              </div>
             </div>
           </div>
         </div>

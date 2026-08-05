@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./MobileNav.module.scss";
+import { OrderCallModal } from "@/components/ui/OrderCallModal/OrderCallModal.tsx";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   const navItems = [
     { path: "/", label: "Главная" },
@@ -47,7 +49,16 @@ export function MobileNav() {
             <a href="tel:+79013544854" className={styles.phone}>
               +7 (901) 354-48-54
             </a>
-            <button className={styles.callbackBtn}>Заказать звонок</button>
+            <button
+              className={styles.callbackBtn}
+              onClick={() => setIsCallModalOpen(true)}
+            >
+              Заказать звонок
+            </button>
+            <OrderCallModal
+              isOpen={isCallModalOpen}
+              onClose={() => setIsCallModalOpen(false)}
+            />
           </div>
         </div>
       )}
