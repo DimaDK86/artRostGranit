@@ -9,6 +9,7 @@ export interface Product {
   material?: string;
   sizes?: string;
   weight?: string;
+  type: string;
 }
 
 import fl001 from "@/assets/images/product/fl/fl_01_01.jpeg";
@@ -22,6 +23,21 @@ import fl007 from "@/assets/images/product/fl/fl_07_01.jpeg";
 import fl008 from "@/assets/images/product/fl/fl_08_01.jpeg";
 import fl009 from "@/assets/images/product/fl/fl_09_01.jpeg";
 
+import va001_01 from "@/assets/images/product/va/va_01_01.jpeg";
+import va001_02 from "@/assets/images/product/va/va_01_02.jpeg";
+import va002_01 from "@/assets/images/product/va/va_02_01.jpeg";
+import va002_02 from "@/assets/images/product/va/va_02_02.jpeg";
+import va003_01 from "@/assets/images/product/va/va_03_01.jpeg";
+import va003_02 from "@/assets/images/product/va/va_03_02.jpeg";
+import va004_01 from "@/assets/images/product/va/va_04_01.jpeg";
+import va004_02 from "@/assets/images/product/va/va_04_02.jpeg";
+import va005_01 from "@/assets/images/product/va/va_05_01.jpeg";
+import va005_02 from "@/assets/images/product/va/va_05_02.jpeg";
+import va006_01 from "@/assets/images/product/va/va_06_01.jpeg";
+import va006_02 from "@/assets/images/product/va/va_06_02.jpeg";
+import va007_01 from "@/assets/images/product/va/va_07_01.jpeg";
+import va007_02 from "@/assets/images/product/va/va_07_02.jpeg";
+
 // Временные данные для примера
 export const mockProducts: Product[] = [
   {
@@ -34,6 +50,7 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "160x60x10 см",
     weight: "15 кг",
+    type: "fl",
   },
   {
     id: "fl002",
@@ -45,6 +62,7 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "110х50х10 см",
     weight: "15 кг",
+    type: "fl",
   },
   {
     id: "fl003",
@@ -56,6 +74,7 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "120х60х10 см",
     weight: "17 кг",
+    type: "fl",
   },
   {
     id: "fl004",
@@ -67,10 +86,11 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "120х60х10 см",
     weight: "15 кг",
+    type: "fl",
   },
   {
     id: "fl004_02",
-    name: 'Цветник из литьевого мрамора м04/2"',
+    name: "Цветник из литьевого мрамора м04/2",
     price: 4000,
     image: fl004_02,
     description:
@@ -78,10 +98,11 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "100х50х10 см",
     weight: "10 кг",
+    type: "fl",
   },
   {
     id: "fl005",
-    name: 'Цветник из литьевого мрамора м05"',
+    name: "Цветник из литьевого мрамора м05",
     price: 5000,
     image: fl005,
     description:
@@ -89,10 +110,11 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "120х60х10 см",
     weight: "17 кг",
+    type: "fl",
   },
   {
     id: "fl006",
-    name: 'Цветник из литьевого мрамора м06"',
+    name: "Цветник из литьевого мрамора м06",
     price: 4400,
     image: fl006,
     description:
@@ -100,10 +122,11 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "110х55х10 см",
     weight: "14 кг",
+    type: "fl",
   },
   {
     id: "fl007",
-    name: 'Цветник из литьевого мрамора м07"',
+    name: "Цветник из литьевого мрамора м07",
     price: 5200,
     image: fl007,
     description:
@@ -111,10 +134,11 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "120х60х10 см",
     weight: "15 кг",
+    type: "fl",
   },
   {
     id: "fl008",
-    name: 'Цветник из литьевого мрамора м08"',
+    name: "Цветник из литьевого мрамора м08",
     price: 4600,
     image: fl008,
     description:
@@ -122,10 +146,11 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "100x50x10 см",
     weight: "10 кг",
+    type: "fl",
   },
   {
     id: "fl009",
-    name: 'Цветник из литьевого мрамора м09"',
+    name: "Цветник из литьевого мрамора м09",
     price: 4000,
     image: fl009,
     description:
@@ -133,5 +158,98 @@ export const mockProducts: Product[] = [
     material: "Литьевой мрамор",
     sizes: "100x50x10 см",
     weight: "10 кг",
+    type: "fl",
+  },
+
+  {
+    id: "va001",
+    name: "Ваза литьевая ЛВ1",
+    price: 2300,
+    image: va001_02,
+    images: [va001_01, va001_02],
+    description:
+      "Вазы из литьевого мрамора: не выгорают, не трескаются от мороза (выдерживают до -50°C), легко моются. Установил — забыл на десятилетия. ",
+    material: "Литьевой мрамор",
+    sizes: "25 см",
+    weight: "3 кг",
+    type: "va",
+  },
+  {
+    id: "va002",
+    name: "Ваза литьевая ЛВ2",
+    price: 3200,
+    image: va002_02,
+    images: [va002_01, va002_02],
+    description:
+      "Вазы из литьевого мрамора: не выгорают, не трескаются от мороза (выдерживают до -50°C), легко моются. Установил — забыл на десятилетия. ",
+    material: "Литьевой мрамор",
+    sizes: "30 см",
+    weight: "3.5 кг",
+    type: "va",
+  },
+  {
+    id: "va003",
+    name: "Ваза литьевая ЛВ3",
+    price: 3200,
+    image: va003_02,
+    images: [va003_01, va003_02],
+    description:
+      "Вазы из литьевого мрамора: не выгорают, не трескаются от мороза (выдерживают до -50°C), легко моются. Установил — забыл на десятилетия. ",
+    material: "Литьевой мрамор",
+    sizes: "30 см",
+    weight: "3.5 кг",
+    type: "va",
+  },
+  {
+    id: "va004",
+    name: "Ваза литьевая ЛВ4",
+    price: 3000,
+    image: va004_02,
+    images: [va004_01, va004_02],
+    description:
+      "Вазы из литьевого мрамора: не выгорают, не трескаются от мороза (выдерживают до -50°C), легко моются. Установил — забыл на десятилетия. ",
+    material: "Литьевой мрамор",
+    sizes: "30 см",
+    weight: "3.5 кг",
+    type: "va",
+  },
+  {
+    id: "va005",
+    name: "Ваза литьевая ЛВ5",
+    price: 3300,
+    image: va005_02,
+    images: [va005_01, va005_02],
+    description:
+      "Вазы из литьевого мрамора: не выгорают, не трескаются от мороза (выдерживают до -50°C), легко моются. Установил — забыл на десятилетия. ",
+    material: "Литьевой мрамор",
+    sizes: "30 см",
+    weight: "3.5 кг",
+    type: "va",
+  },
+  {
+    id: "va006",
+    name: "Ваза литьевая ЛВ6",
+    price: 3700,
+    image: va006_02,
+    images: [va006_01, va006_02],
+    description:
+      "Вазы из литьевого мрамора: не выгорают, не трескаются от мороза (выдерживают до -50°C), легко моются. Установил — забыл на десятилетия. ",
+    material: "Литьевой мрамор",
+    sizes: "40 см",
+    weight: "4.5 кг",
+    type: "va",
+  },
+  {
+    id: "va007",
+    name: "Ваза литьевая ЛВ7",
+    price: 2500,
+    image: va007_02,
+    images: [va007_01, va007_02],
+    description:
+      "Вазы из литьевого мрамора: не выгорают, не трескаются от мороза (выдерживают до -50°C), легко моются. Установил — забыл на десятилетия. ",
+    material: "Литьевой мрамор",
+    sizes: "30 см",
+    weight: "3.5 кг",
+    type: "va",
   },
 ];

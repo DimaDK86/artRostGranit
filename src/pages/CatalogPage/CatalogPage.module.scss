@@ -9,11 +9,11 @@
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
   color: white;
   padding: 20px 0;
-  
+
   @include tablet {
     padding: 60px 0;
   }
-  
+
   @include mobile {
     padding: 40px 0;
   }
@@ -22,11 +22,11 @@
 .title {
   font-size: 3rem;
   margin-bottom: 20px;
-  
+
   @include tablet {
     font-size: 2.5rem;
   }
-  
+
   @include mobile {
     font-size: 2rem;
   }
@@ -36,7 +36,7 @@
   font-size: 1.2rem;
   opacity: 0.9;
   max-width: 600px;
-  
+
   @include mobile {
     font-size: 1rem;
   }
@@ -46,6 +46,10 @@
   padding: 30px 0;
   background: white;
   border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .filterBar {
@@ -54,10 +58,11 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-  
+
   @include mobile {
     flex-direction: column;
     align-items: stretch;
+    gap: 15px;
   }
 }
 
@@ -68,53 +73,126 @@
 }
 
 .filterTab {
-  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
   background: #f0f0f0;
-  border: none;
-  border-radius: 20px;
+  border: 2px solid transparent;
+  border-radius: 25px;
   cursor: pointer;
-  transition: all 0.3s;
-  
+  transition: all 0.3s ease;
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+  user-select: none;
+
   @include hover {
-    background: #2c3e50;
-    color: white;
+    &:hover:not(.active) {
+      background: #e8e8e8;
+      transform: translateY(-2px);
+    }
   }
-  
+
+  @include mobile {
+    padding: 8px 16px;
+    font-size: 14px;
+    flex: 1;
+    justify-content: center;
+  }
+
   &.active {
     background: #2c3e50;
     color: white;
+    border-color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
+    transform: scale(1.02);
+
+    @include hover {
+      &:hover {
+        background: #1a252f;
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  .count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+
+    .active & {
+      background: rgba(255, 255, 255, 0.25);
+    }
   }
 }
 
-.sortSelect {
-  padding: 8px 16px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background: white;
-  cursor: pointer;
-  
+.filterInfo {
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
+
   @include mobile {
-    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  strong {
+    color: #2c3e50;
+    font-size: 16px;
   }
 }
 
 .products {
-  padding: 60px 0;
+  padding: 40px 0 60px;
+
+  @include mobile {
+    padding: 20px 0 40px;
+  }
 }
 
 .productGrid {
   display: grid;
   gap: 30px;
-  
+
   @include tablet {
     gap: 20px;
   }
-  
+
   @include mobile {
     gap: 15px;
   }
 }
 
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+
+  h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #999;
+  }
+}
+
+// Пагинация (остается без изменений)
 .pagination {
   padding: 40px 0 80px;
 }
@@ -133,23 +211,23 @@
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s;
-  
+
   @include hover {
     background: #2c3e50;
     color: white;
     border-color: #2c3e50;
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    
+
     @include hover {
       background: white;
       color: inherit;
     }
   }
-  
+
   &.active {
     background: #2c3e50;
     color: white;
